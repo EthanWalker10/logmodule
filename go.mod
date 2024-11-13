@@ -1,4 +1,4 @@
-module devops.inspur.com/ITE__InTech-blockchain/logmodule
+module github.com/EthanWalker10/logmodule
 
 go 1.22.5
 
