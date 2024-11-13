@@ -3,8 +3,8 @@ package service
 import (
 	"time"
 
-	"devops.inspur.com/ITE__InTech-blockchain/logmodule/models"
-	"devops.inspur.com/ITE__InTech-blockchain/logmodule/storage"
+	"github.com/EthanWalker10/logmodule/models"
+	"github.com/EthanWalker10/logmodule/storage"
 )
 
 type LoggerService struct{}

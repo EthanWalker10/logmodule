@@ -3,7 +3,7 @@ package storage
 import (
 	"fmt"
 
-	"devops.inspur.com/ITE__InTech-blockchain/logmodule/models"
+	"github.com/EthanWalker10/logmodule/models"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"

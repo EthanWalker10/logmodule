@@ -3,7 +3,7 @@ package storage
 import (
 	"time"
 
-	"devops.inspur.com/ITE__InTech-blockchain/logmodule/models"
+	"github.com/EthanWalker10/logmodule/models"
 )
 
 func AddLog(entry *models.LogEntry) error {
