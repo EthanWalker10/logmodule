@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"time"
+	"devops.inspur.com/ITE__InTech-blockchain/utils" // 导入 utils 包
+)
 
 // MySQL 数据库表结构
 // type LogEntry struct {
@@ -26,4 +29,6 @@ type LogEntry struct {
 	RequestTime time.Time `json:"request_time" gorm:"type:timestamp"`    // 请求发生的时间
 	Initiator   string    `json:"initiator" gorm:"type:varchar(100)"`    // 请求发起人
 	Status      string    `json:"status" gorm:"type:varchar(20)"`        // 操作状态
+	hash        string    `json:"hash" gorm:"type:varchar(255)"`                        // 哈希值，不存储在数据库中
 }
+

@@ -1,14 +1,16 @@
 package storage
 
 import (
+	"encoding/hex"
 	"time"
 
-	"devops.inspur.com/ITE__InTech-blockchain/logmodule/models"
-)
+	"logmodule/utils"
 
-func AddLog(entry *models.LogEntry) error {
-	return DB.Create(entry).Error
-}
+	"errors"
+
+	"devops.inspur.com/ITE__InTech-blockchain/logmodule/models"
+	"github.com/EthanWalker10/logmodule/utils"
+)
 
 func GetAllLogs() ([]models.LogEntry, error) {
 	var logs []models.LogEntry
@@ -16,7 +18,17 @@ func GetAllLogs() ([]models.LogEntry, error) {
 	return logs, err
 }
 
+func AddLog(entry *models.LogEntry) error {
+	return DB.Create(entry).Error
+}
+
 func AddLogEntry(description, requestType, requestPath, className, methodName, initiator, status string) error {
+	data := []byte(description + requestType + requestPath + className + methodName + initiator + status)
+	hash, err := utils.Sha256(data)
+	if err != nil {
+		return "", err
+	}
+	hashHex := hex.EncodeToString(hash)
 	entry := models.LogEntry{
 		Description: description,
 		RequestType: requestType,
@@ -26,6 +38,7 @@ func AddLogEntry(description, requestType, requestPath, className, methodName, i
 		RequestTime: time.Now(),
 		Initiator:   initiator,
 		Status:      status,
+		hash:        hashHex,
 	}
 	return AddLog(&entry)
 }
@@ -64,4 +77,24 @@ func RetrieveLogs(keyword string, startTime, endTime *time.Time) ([]models.LogEn
 	// 执行查询
 	err := query.Find(&logs).Error
 	return logs, err
+}
+
+func GetLogAndValidateHash(id string) (*models.LogEntry, error) {
+	var entry models.LogEntry
+	err := DB.First(&entry, id).Error
+	if err != nil {
+		return nil, err
+	}
+
+	data := []byte(entry.Description + entry.RequestType + entry.RequestPath + entry.ClassName + entry.MethodName + entry.Initiator + entry.Status)
+	hash, err := utils.Sha256(data)
+	if err != nil {
+		return nil, err
+	}
+	hashHex := hex.EncodeToString(hash)
+	if entry.Hash != hashHex {
+		return nil, errors.New("stringhash mismatch for log entry with id %s")
+	}
+
+	return &entry, nil
 }
