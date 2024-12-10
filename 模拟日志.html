@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日志表格</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+            color: #999; /* 表头字体颜色为淡灰色 */
+        }
+
+        tr {
+            background-color: #fff; /* 所有行的背景色保持一致 */
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 150px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 4px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position tooltip above text */
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h2>日志记录表</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>日志说明</th>
+                <th>请求类型</th>
+                <th>请求路径</th>
+                <th>请求类名</th>
+                <th>请求方法</th>
+                <th>请求时间</th>
+                <th>请求发起人</th>
+                <th>日志完整性</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>获取节点证书</td>
+                <td>POST</td>
+                <td>cmb=GetCertNode</td>
+                <td>chain_management</td>
+                <td>GetCertNodeHandler</td>
+                <td>2024-12-10 19:15</td>
+                <td>fcd</td>
+                <td>无效</td>
+            </tr>
+            <tr>
+                <td>上传服务信息</td>
+                <td>POST</td>
+                <td>
+                    <div class="tooltip">cmb=UploadService
+                        <span class="tooltiptext">cmb=UploadService</span>
+                    </div>
+                </td>
+                <td>sys</td>
+                <td>UploadServiceHandler</td>
+                <td>2024-12-10 13:33</td>
+                <td>fxd</td>
+                <td>无法校验</td>
+            </tr>
+            <tr>
+                <td>获取登录令牌</td>
+                <td>POST</td>
+                <td>cmb=GetUactoken</td>
+                <td>user</td>
+                <td>GetUactokenHandler</td>
+                <td>2024-12-10 13:34</td>
+                <td>fxd</td>
+                <td>有效</td>
+            </tr>
+            <tr>
+                <td>设置系统信息</td>
+                <td>POST</td>
+                <td>cmb=GetSystemSettings</td>
+                <td>sys</td>
+                <td>GetSystemSettingsHandler</td>
+                <td>2024-12-10 13:35</td>
+                <td>fxd</td>
+                <td>有效</td>
+            </tr>
+            <tr>
+                <td>获取登录令牌</td>
+                <td>POST</td>
+                <td>cmb=GetUactoken</td>
+                <td>user</td>
+                <td>GetUactokenHandler</td>
+                <td>2024-12-09 15:12</td>
+                <td>admin</td>
+                <td>有效</td>
+            </tr>
+            <tr>
+                <td>获取组织证书</td>
+                <td>POST</td>
+                <td>cmb=GetCertOrg</td>
+                <td>chain_management</td>
+                <td>GetCertOrgHandler</td>
+                <td>2024-12-09 15:15</td>
+                <td>admin</td>
+                <td>有效</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
